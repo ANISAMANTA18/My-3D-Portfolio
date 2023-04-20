@@ -27,6 +27,15 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleResumeClick = () => {
+    const link = document.createElement("a");
+    link.href = resume;
+    link.download = "Resume-Anirban-Samanta.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <nav
       className={`${
@@ -61,10 +70,7 @@ const Navbar = () => {
               onClick={() => setActive(nav.title)}
             >
               {nav.title === "Resume" ? (
-                <a
-                  href={resume}
-                  download="Resume-Anirban-Samanta.pdf"
-                >
+                <a href="#" onClick={handleResumeClick}>
                   {nav.title}
                 </a>
               ) : (
