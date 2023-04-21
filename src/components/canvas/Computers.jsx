@@ -1,8 +1,17 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import pc from "../../assets/pc.png";
 
 import CanvasLoader from "../Loader";
+
+const ComputersImage = () => {
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+    <img src={pc} alt="Computer" />
+    </div>
+  );
+};
 
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("./desktop_pc/scene.gltf");
@@ -67,7 +76,9 @@ const ComputersCanvas = () => {
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
         />
+        {!isMobile && (
         <Computers isMobile={isMobile} />
+         )}
       </Suspense>
 
       <Preload all />

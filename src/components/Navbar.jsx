@@ -28,6 +28,7 @@ const Navbar = () => {
   }, []);
 
   const handleResumeClick = () => {
+    event.preventDefault();
     const link = document.createElement("a");
     link.href = resume;
     link.download = "Resume-Anirban-Samanta.pdf";
@@ -70,7 +71,7 @@ const Navbar = () => {
               onClick={() => setActive(nav.title)}
             >
               {nav.title === "Resume" ? (
-                <a href="#" onClick={handleResumeClick}>
+                <a href={resume} onClick={handleResumeClick}>
                   {nav.title}
                 </a>
               ) : (
@@ -105,7 +106,13 @@ const Navbar = () => {
                     setActive(nav.title);
                   }}
                 >
-                  <a href={`#${nav.id}`}>{nav.title}</a>
+                  {nav.title === "Resume" ? (
+                <a href={resume} onClick={handleResumeClick}>
+                  {nav.title}
+                </a>
+              ) : (
+                <a href={`#${nav.id}`}>{nav.title}</a>
+              )}
                 </li>
               ))}
             </ul>
